@@ -18,6 +18,7 @@ const timer = document.querySelector('#timer');
 const sound1 = document.querySelector('#sound1');
 const sound2 = document.querySelector('#sound2');
 const sound3 = document.querySelector('#sound3');
+const sound4 = document.querySelector('#sound4');
 
 let points = 0;
 let m = 0;
@@ -77,11 +78,8 @@ Enemy.prototype.update = function(dt) {
 	/* colision */
  	if(player.x < (this.x + enemyWidth) && (player.x + playerWidth) > this.x && player.y < (this.y + enemyHeight) &&
 	  (player.y + playerHeight) > this.y){
-		setTimeout(function(){
-			player.x = 2*fieldWidth;
-			player.y = 5*fieldHeight;
-		}, 200);
-
+		player.x = 2*fieldWidth;
+		player.y = 5*fieldHeight;
 
 		let soundEffect1 = true;
 
@@ -188,6 +186,8 @@ function startGame(){
 	gameTrophies.innerHTML = '';
 	points = 0;
 	timerGameStart();
+	sound4.loop = true;
+	sound4.play();
 };
 
 function rocksCollision(){
@@ -410,6 +410,9 @@ function gameOver(){
 
 	// TODO: set time on 0
 	timer.style.display = 'none';
+
+	sound4.pause();
+	sound4.currentTime = 0;
 
 };
 
