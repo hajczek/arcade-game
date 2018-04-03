@@ -1,6 +1,35 @@
-frontend-nanodegree-arcade-game
-===============================
+# Classic Arcade Game Clone Project
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Title:
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+'EASTER EGG'
+
+## INSTRUCTION
+
+
+1. Move egg by keys:
+← left
+↑ up
+→ right
+↓ down
+
+2. Press ENTER key to start game.
+
+3. Press END key to restart game.
+
+4. Put egg to water and get a small egg! Then your egg will be more colored ...
+
+5. Be careful about chicken! Collision with chicken put your egg at the begining and delets all small eggs!!
+
+6. Rock gives heart and one gem (green, blue or orange).
+
+7. Gem gives one key and delete one chicken!
+
+8. Gather 6 small eggs and won game!
+
+GOOD LUCK!
+
+
+## LINK TO GAME
+
+[Play EASTER EGG](https://hajczek.github.io/arcade-game/).
