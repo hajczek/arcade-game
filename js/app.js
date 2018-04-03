@@ -20,6 +20,7 @@ const sound2 = document.querySelector('#sound2');
 const sound3 = document.querySelector('#sound3');
 const sound4 = document.querySelector('#sound4');
 const sound5 = document.querySelector('#sound5');
+const sound6 = document.querySelector('#sound6');
 
 let points = 0;
 let m = 0;
@@ -82,11 +83,14 @@ Enemy.prototype.update = function(dt) {
 		this.x = -100;
 	}
 
-	// TODO: Adds a new functionalities when Player have collision with Enemy.
+	// TODO: Puts player on initial place after collision with Enemy.
  	if(player.x < (this.x + enemyWidth) && (player.x + playerWidth) > this.x && player.y < (this.y + enemyHeight) &&
 	  (player.y + playerHeight) > this.y) {
 		player.x = 2*fieldWidth;
 		player.y = 5*fieldHeight;
+
+		// TODO: Sets player sprite on start image.
+		player.sprite = 'images/egg1.png';
 
 		// TODO: Adds a sound1.
 		let soundEffect1 = true;
@@ -103,7 +107,6 @@ Enemy.prototype.update = function(dt) {
 		if(points > 0) {
 			points = 0;
 			counterPoints.innerHTML = '';
-			Player.prototype.sprite = 'images/egg1.png';
 		}
 	}
 };
@@ -428,8 +431,19 @@ Player.prototype.handleInput = function(keyPress) {
 		if(points == 6) {
 			this.sprite = 'images/egg6.png';
 			gameOver();
+
+			// TODO: Adds a sound6.
+			let soundEffect6 = true;
+
+			// TODO: Plays sound6.
+			if(soundEffect6) {
+				sound6.pause();
+				sound6.currentTime = 0;
+				sound6.play();
+				soundEffect6 = false;
+			}
 		};
-	}
+	};
 };
 
 // TODO: Sets player on initial position.
