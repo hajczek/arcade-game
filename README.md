@@ -1,17 +1,11 @@
 # Classic Arcade Game Clone Project
 
-## Title:
-
-'EASTER EGG'
+## Title: 'EASTER EGG'
 
 ## INSTRUCTION
 
 
-1. Move egg by keys:
-← left
-↑ up
-→ right
-↓ down
+1. Move egg by keys: ← left, ↑ up, → right, ↓ down.
 
 2. Press ENTER key to start game.
 
