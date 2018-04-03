@@ -19,6 +19,7 @@ const sound1 = document.querySelector('#sound1');
 const sound2 = document.querySelector('#sound2');
 const sound3 = document.querySelector('#sound3');
 const sound4 = document.querySelector('#sound4');
+const sound5 = document.querySelector('#sound5');
 
 let points = 0;
 let m = 0;
@@ -404,18 +405,29 @@ Player.prototype.handleInput = function(keyPress) {
 			points = points + 1;
 			counterPoints.innerHTML += "<img class='star' src='images/eggSmall.png'>";
 
-			// TODO: Changes the image of Player depending on quantity of points.
-			if(points == 0) {this.sprite = 'images/egg1.png';};
-			if(points == 1) {this.sprite = 'images/egg2.png';};
-			if(points == 2) {this.sprite = 'images/egg3.png';};
-			if(points == 4) {this.sprite = 'images/egg4.png';};
-			if(points == 5) {this.sprite = 'images/egg5.png';};
+			// TODO: Adds a sound5.
+			let soundEffect5 = true;
 
-			// TODO: Ends game when quantity of point equal 6.
-			if(points == 6) {
-				this.sprite = 'images/egg6.png';
-				gameOver();
-			};
+			// TODO: Plays sound5.
+			if(soundEffect5) {
+				sound5.pause();
+				sound5.currentTime = 0;
+				sound5.play();
+				soundEffect5 = false;
+			}
+		};
+
+		// TODO: Changes the image of Player depending on quantity of points.
+		if(points == 0) {this.sprite = 'images/egg1.png';};
+		if(points == 1) {this.sprite = 'images/egg2.png';};
+		if(points == 2) {this.sprite = 'images/egg3.png';};
+		if(points == 4) {this.sprite = 'images/egg4.png';};
+		if(points == 5) {this.sprite = 'images/egg5.png';};
+
+		// TODO: Ends game when quantity of point equal 6.
+		if(points == 6) {
+			this.sprite = 'images/egg6.png';
+			gameOver();
 		};
 	}
 };
