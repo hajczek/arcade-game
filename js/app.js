@@ -51,9 +51,9 @@ let Enemy = function(x, y, move, sprite) {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-	this.x = x;
+	this.x = -100;
 	this.y = y;
-	this.move = move;
+	this.move = (Math.random() * 120) + 70;
     this.sprite = 'images/enemy-chicken.png';
 };
 
@@ -63,16 +63,16 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-	this.x += (this.move * dt);
+
+	this.x = this.x + (this.move * dt);
 
 	if(this.x > canvasWidth){
 		this.x = -100;
-		this.move = (Math.random() * 120) + 70;
 	}
 
 	/* colision */
- 	if(player.x < this.x + enemyWidth && player.x + playerWidth > this.x && player.y < this.y + enemyHeight &&
-	  player.y + playerHeight > this.y){
+ 	if(player.x < (this.x + enemyWidth) && (player.x + playerWidth) > this.x && player.y < (this.y + enemyHeight) &&
+	  (player.y + playerHeight) > this.y){
 		setTimeout(function(){
 			player.x = 2*fieldWidth;
 			player.y = 5*fieldHeight;
@@ -111,7 +111,7 @@ function shuffle(array) {
 
 let enemyX = Math.floor(Math.random() * 450) + 200;
 let enemyY = [70, 153, 233, 70, 153, 233, 70, 153, 233];
-let enemyMove = (Math.random() * 100) + 50;
+let enemyMove = Math.floor(Math.random() * 100) + 50;
 
 allEnemies = shuffle(allEnemies);
 
