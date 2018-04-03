@@ -13,7 +13,7 @@
 
 4. Put egg to water and get a small egg! Then your egg will be more colored ...
 
-5. Be careful about chicken! Collision with chicken put your egg at the begining and delets all small eggs!!
+5. Be careful about chicken! Collision with chicken put your egg at the begining and deletes all small eggs!!
 
 6. Rock gives heart and one gem (green, blue or orange).
 
