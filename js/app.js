@@ -15,6 +15,10 @@ const popupEnd = document.querySelector('.popup_end');
 const counterPoints = document.querySelector('.game_eggs');
 const gameTrophies = document.querySelector('.game_trophies');
 const timer = document.querySelector('#timer');
+const sound1 = document.querySelector('#sound1');
+const sound2 = document.querySelector('#sound2');
+const sound3 = document.querySelector('#sound3');
+
 let points = 0;
 let m = 0;
 let s = 0;
@@ -77,6 +81,18 @@ Enemy.prototype.update = function(dt) {
 			player.x = 2*fieldWidth;
 			player.y = 5*fieldHeight;
 		}, 200);
+
+
+		let soundEffect1 = true;
+
+		//Play sound1
+
+		if(soundEffect1){
+			sound1.pause();
+			sound1.currentTime = 0;
+			sound1.play();
+			soundEffect1 = false;
+		}
 
 		if(points > 0){
 			points = 0;
@@ -180,6 +196,17 @@ function rocksCollision(){
 		gameTrophies.appendChild(img);
 	};
 	img.src = 'images/smallHeart.png';
+
+	let soundEffect2 = true;
+
+	//Play sound2
+
+	if(soundEffect2){
+		sound2.pause();
+		sound2.currentTime = 0;
+		sound2.play();
+		soundEffect2 = false;
+	}
 };
 
 Player.prototype.update = function(dt){
@@ -230,6 +257,17 @@ function gemsCollision(){
 		 gameTrophies.appendChild(img2);
 	};
 	img2.src = 'images/smallKey.png';
+
+	let soundEffect3 = true;
+
+	//Play sound2
+
+	if(soundEffect3){
+		sound3.pause();
+		sound3.currentTime = 0;
+		sound3.play();
+		soundEffect3 = false;
+	}
 };
 
 
