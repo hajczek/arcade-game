@@ -97,7 +97,7 @@ var Engine = (function(global) {
         player.update();
     }
 
-	function updateGems(dt) {
+	/* function updateGems(dt) {
         allGems.forEach(function(gem) {
             gem.update(dt);
         });
@@ -109,7 +109,7 @@ var Engine = (function(global) {
             rock.update(dt);
         });
         player.update();
-    }
+    } */
 
 
     /* This function initially draws the "game level", it will then call
