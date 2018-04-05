@@ -1,13 +1,14 @@
-const canvasWidth = 505;
-const canvasHeight = 480;
-const fieldWidth = canvasWidth/5;
-const fieldHeight = canvasHeight/6;
-const playerWidth = 60;
-const playerHeight = 70;
-const enemyWidth = 60;
-const enemyHeight = 70;
-const gemWidth = 60;
-const gemHeight = 40;
+const CANVAS_WIDTH = 505;
+const CANVAS_HEIGHT = 480;
+const FIELD_WIDTH = CANVAS_WIDTH/5;
+const FIELD_HEIGHT = CANVAS_HEIGHT/6;
+const PLAYER_WIDTH = 60;
+const PLAYER_HEIGHT = 70;
+const ENEMY_WIDTH = 60;
+const ENEMY_HEIGHT = 70;
+const GEM_WIDTH = 60;
+const GEM_HEIGHT = 40;
+
 const canvas = document.querySelector('canvas');
 const h1 = document.querySelector('h1');
 const popup = document.querySelector('.popup_info');
@@ -31,21 +32,21 @@ let allRocks = [];
 
 // TODO: Array with all positions on canvas.
 let position = [
-	[110, (fieldWidth*0.2)],
-	[110, (fieldWidth*1.2)],
-	[110, (fieldWidth*2.2)],
-	[110, (fieldWidth*3.2)],
-	[110, (fieldWidth*4.2)],
-	[190, (fieldWidth*0.2)],
-	[190, (fieldWidth*1.2)],
-	[190, (fieldWidth*2.2)],
-	[190, (fieldWidth*3.2)],
-	[190, (fieldWidth*4.2)],
-	[275, (fieldWidth*0.2)],
-	[275, (fieldWidth*1.2)],
-	[275, (fieldWidth*2.2)],
-	[275, (fieldWidth*3.2)],
-	[275, (fieldWidth*4.2)],
+	[110, (FIELD_WIDTH*0.2)],
+	[110, (FIELD_WIDTH*1.2)],
+	[110, (FIELD_WIDTH*2.2)],
+	[110, (FIELD_WIDTH*3.2)],
+	[110, (FIELD_WIDTH*4.2)],
+	[190, (FIELD_WIDTH*0.2)],
+	[190, (FIELD_WIDTH*1.2)],
+	[190, (FIELD_WIDTH*2.2)],
+	[190, (FIELD_WIDTH*3.2)],
+	[190, (FIELD_WIDTH*4.2)],
+	[275, (FIELD_WIDTH*0.2)],
+	[275, (FIELD_WIDTH*1.2)],
+	[275, (FIELD_WIDTH*2.2)],
+	[275, (FIELD_WIDTH*3.2)],
+	[275, (FIELD_WIDTH*4.2)],
 ];
 // TODO: Shuffles the elements in array position.
 position = shuffle(position);
@@ -79,15 +80,15 @@ Enemy.prototype.update = function(dt) {
 	this.x = this.x + (this.move * dt);
 
 	// TODO: Puts Enemy on a start position if actual position of Enemy is bigger than width of canvas.
-	if(this.x > canvasWidth) {
+	if(this.x > CANVAS_WIDTH) {
 		this.x = -100;
 	}
 
 	// TODO: Puts player on initial place after collision with Enemy.
- 	if(player.x < (this.x + enemyWidth) && (player.x + playerWidth) > this.x && player.y < (this.y + enemyHeight) &&
-	  (player.y + playerHeight) > this.y) {
-		player.x = 2*fieldWidth;
-		player.y = 5*fieldHeight;
+ 	if(player.x < (this.x + ENEMY_WIDTH) && (player.x + PLAYER_WIDTH) > this.x && player.y < (this.y + ENEMY_HEIGHT) &&
+	  (player.y + PLAYER_HEIGHT) > this.y) {
+		player.x = 2*FIELD_WIDTH;
+		player.y = 5*FIELD_HEIGHT;
 
 		// TODO: Sets player sprite on start image.
 		player.sprite = 'images/egg1.png';
@@ -257,7 +258,7 @@ function rocksCollision(){
 Player.prototype.update = function() {
 
 	// TODO: Adds new behaviours when player have collision with rocks.
-	if(this.x < rock1.x + gemWidth && this.x + playerWidth > rock1.x && this.y < rock1.y + gemHeight && this.y + playerHeight > rock1.y) {
+	if(this.x < rock1.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock1.x && this.y < rock1.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock1.y) {
 		rocksCollision();
 
 		// TODO: Adds a gem1 to canvas.
@@ -270,7 +271,7 @@ Player.prototype.update = function() {
 		rock1.x = -900;
 	};
 
-	if(this.x < rock2.x + gemWidth && this.x + playerWidth > rock2.x && this.y < rock2.y + gemHeight && this.y + playerHeight > rock2.y) {
+	if(this.x < rock2.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock2.x && this.y < rock2.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock2.y) {
 		rocksCollision();
 
 		// TODO: Adds a gem2 to canvas.
@@ -283,7 +284,7 @@ Player.prototype.update = function() {
 		rock2.x = -900;
 	};
 
-	if(this.x < rock3.x + gemWidth && this.x + playerWidth > rock3.x && this.y < rock3.y + gemHeight && this.y + playerHeight > rock3.y) {
+	if(this.x < rock3.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock3.x && this.y < rock3.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock3.y) {
 		rocksCollision();
 
 		// TODO: Adds a gem3 to canvas.
@@ -297,7 +298,7 @@ Player.prototype.update = function() {
 	};
 
 	// TODO: Adds new behaviours when player have collision with gems.
-	if(this.x < gem1.x + gemWidth && this.x + playerWidth > gem1.x && this.y < gem1.y + gemHeight && this.y + playerHeight > gem1.y) {
+	if(this.x < gem1.x + GEM_WIDTH && this.x + PLAYER_WIDTH > gem1.x && this.y < gem1.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > gem1.y) {
 
 		// TODO: Sets a position on axis X on -900 for gem1.
 		gem1.x = -900;
@@ -308,7 +309,7 @@ Player.prototype.update = function() {
 		gemsCollision();
 	};
 
-	if(this.x < gem2.x + gemWidth && this.x + playerWidth > gem2.x && this.y < gem2.y + gemHeight && this.y + playerHeight > gem2.y) {
+	if(this.x < gem2.x + GEM_WIDTH && this.x + PLAYER_WIDTH > gem2.x && this.y < gem2.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > gem2.y) {
 
 		// TODO: Sets a position on axis X on -900 for gem2.
 		gem2.x = -900;
@@ -319,7 +320,7 @@ Player.prototype.update = function() {
 		gemsCollision();
 	};
 
-	if(this.x < gem3.x + gemWidth && this.x + playerWidth > gem3.x && this.y < gem3.y + gemHeight && this.y + playerHeight > gem3.y) {
+	if(this.x < gem3.x + GEM_WIDTH && this.x + PLAYER_WIDTH > gem3.x && this.y < gem3.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > gem3.y) {
 
 		// TODO: Sets a position on axis X on -900 for gem3.
 		gem3.x = -900;
@@ -369,28 +370,28 @@ Player.prototype.handleInput = function(keyPress) {
 
 	// TODO: Move player to left when key Left is press but only if player position on axis X is bigger than 0.
 	if(keyPress == 'left' && this.x > 0) {
-		this.x -= fieldWidth;
+		this.x -= FIELD_WIDTH;
 	} else if(keyPress == 'left' && this.x < 0) {
 		this.x == 0;
 	};
 
 	// TODO: Move player up when key Up is press but only if player position on axis Y is bigger than 0.
 	if(keyPress == 'up' && this.y > 0) {
-		this.y -= fieldHeight;
+		this.y -= FIELD_HEIGHT;
 	};
 
-	// TODO: Move player to right when key Right is press but only if player position on axis X is smaller than 4*fieldWidth.
-	if(keyPress == 'right' && this.x < (4*fieldWidth)) {
-		this.x += fieldWidth;
-	}else if(keyPress == 'right' && this.x > (4*fieldWidth)) {
-		this.x == 4*fieldWidth;
+	// TODO: Move player to right when key Right is press but only if player position on axis X is smaller than 4*FIELD_WIDTH.
+	if(keyPress == 'right' && this.x < (4*FIELD_WIDTH)) {
+		this.x += FIELD_WIDTH;
+	}else if(keyPress == 'right' && this.x > (4*FIELD_WIDTH)) {
+		this.x == 4*FIELD_WIDTH;
 	};
 
-	// TODO: Move player down when key Down is press but only if player position on axis Y is smaller than 5*fieldHeight.
-	if(keyPress == 'down' && this.y < (5*fieldHeight)) {
-		this.y += fieldHeight;
-	} else if(keyPress == 'down' && this.y > (5*fieldHeight)) {
-		this.x == 5*fieldHeight;
+	// TODO: Move player down when key Down is press but only if player position on axis Y is smaller than 5*FIELD_HEIGHT.
+	if(keyPress == 'down' && this.y < (5*FIELD_HEIGHT)) {
+		this.y += FIELD_HEIGHT;
+	} else if(keyPress == 'down' && this.y > (5*FIELD_HEIGHT)) {
+		this.x == 5*FIELD_HEIGHT;
 	};
 
 	// TODO: Relod game when key End is press.
@@ -400,8 +401,8 @@ Player.prototype.handleInput = function(keyPress) {
 
 	// TODO: Move player on initial position when his position on axis Y is smaller than 0.
 	if(this.y < 1) {
-		player.x = 2*fieldWidth;
-		player.y = 5*fieldHeight;
+		this.x = 2*FIELD_WIDTH;
+		this.y = 5*FIELD_HEIGHT;
 
 		// TODO: Adds small egg when quantity of points are smaller than 7
 		if(points < 7) {
@@ -447,7 +448,7 @@ Player.prototype.handleInput = function(keyPress) {
 };
 
 // TODO: Sets player on initial position.
-let player = new Player (2*fieldWidth, 5*fieldHeight);
+let player = new Player (2*FIELD_WIDTH, 5*FIELD_HEIGHT);
 
 
 // TODO: Listens for key presses.
