@@ -4,7 +4,6 @@
 
 ## INSTRUCTION
 
-
 1. Move egg by keys: ← left, ↑ up, → right, ↓ down.
 
 2. Press ENTER key to start game.
@@ -24,6 +23,30 @@
 GOOD LUCK!
 
 
+## INSTALLATION GUIDE
+
+1. Download Arcade Game folder from repository.
+
+2. Put this folder on local or remote server.
+
+3. Open index.html file in your browser.
+
+That's it! Now you can play Easter EGG :)
+
+
+## REQUIREMENTS
+
+1. Server (local or external).
+
+2. Browser with JavaScript enabled.
+
+
 ## LINK TO GAME
 
 [Play EASTER EGG](https://hajczek.github.io/arcade-game/).
+
+## VERSION
+1.0
+
+## LICENSE
+The MIT License - See [license.md](https://github.com/hajczek/arcade-game/blob/master/license/license.md)
