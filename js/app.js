@@ -30,7 +30,7 @@ let timeGoes = true;
 let allEnemies = [];
 let allRocks = [];
 
-// TODO: Array with all positions on canvas.
+// Array with all positions on canvas.
 let position = [
 	[110, (FIELD_WIDTH*0.2)],
 	[110, (FIELD_WIDTH*1.2)],
@@ -48,13 +48,12 @@ let position = [
 	[275, (FIELD_WIDTH*3.2)],
 	[275, (FIELD_WIDTH*4.2)],
 ];
-// TODO: Shuffles the elements in array position.
+
+// Shuffles the elements in array position.
 position = shuffle(position);
 
-// TODO: Sets the title of game.
 h1.innerHTML = 'EASTER EGG';
 
-// TODO: Sets welcome board with instruction for game.
 popup.innerHTML = "Move egg by keys:<br><span class='yellow'>←</span> left, <span class='yellow'>↑</span> up, <span class='yellow'>→</span> right, <span class='yellow'>↓</span> down.<br><br>Put egg to water and get a small egg! Then your egg will be more colored ...<br><br><span class='yellow'>Be careful about chicken!</span><br>Collision with chicken put your egg at the begining and deletes all small eggs!!<br><br><img src='images/smallRock.png'> gives  <img src='images/smallHeart.png'> and one <img src='images/smallGem_Blue.png'> or <img src='images/smallGem_Green.png'> or <img src='images/smallGem_Orange.png'>.<br>One gem gives one <img src='images/smallKey.png'> and delete one <img src='images/smallChicken.png'>!<br>Gather <img src='images/eggSmall.png'><img src='images/eggSmall.png'><img src='images/eggSmall.png'><img src='images/eggSmall.png'><img src='images/eggSmall.png'><img src='images/eggSmall.png'>and won game!<br><br><span class='yellow'>GOOD LUCK!</span><br><br><br><span class='info'>Press <span class='green'>ENTER</span> to start game!</span>";
 
 
@@ -72,13 +71,13 @@ class Characters {
 		this.y = y;
 		this.sprite = sprite;
 		this.move = move;
-	};
+	}
 
-	// TODO: Drawes the character on the screen, required method for game.
+	// Drawes the character on the screen, required method for game.
 	render() {
     	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-	};
-};
+	}
+}
 
 /**
  * Class representing an Enemy.
@@ -98,31 +97,31 @@ class Enemy extends Characters {
 		this.y = y;
 		this.move = (Math.random() * 120) + 70;
 		this.sprite = 'images/enemy-chicken.png';
-	};
+	}
 
-	// TODO: Updates the Enemy. Sets dt parameter for update Enemy - a time delta between ticks.
+	// Updates the Enemy. Sets dt parameter for update Enemy - a time delta between ticks.
 	update(dt) {
 
-		// TODO: Multiplies a movement by the dt parameter. This ensure the game runs at the same speed for all computers.
+		// Multiplies a movement by the dt parameter. This ensure the game runs at the same speed for all computers.
 		this.x = this.x + (this.move * dt);
 
-		// TODO: Puts Enemy on a start position if actual position of Enemy is bigger than width of canvas.
+		// Puts Enemy on a start position if actual position of Enemy is bigger than width of canvas.
 		if(this.x > CANVAS_WIDTH) {
 			this.x = -100;
-		};
+		}
 
-		// TODO: Puts player on initial place after collision with Enemy.
+		// Puts player on initial place after collision with Enemy.
 		if(player.x < (this.x + ENEMY_WIDTH) && (player.x + PLAYER_WIDTH) > this.x && player.y < (this.y + ENEMY_HEIGHT) && (player.y + PLAYER_HEIGHT) > this.y) {
 			player.x = 2*FIELD_WIDTH;
 			player.y = 5*FIELD_HEIGHT;
 
-			// TODO: Sets player sprite on start image.
+			// Sets player sprite on start image.
 			player.sprite = 'images/egg1.png';
 
-			// TODO: Adds a sound1.
+			// Adds a sound1.
 			let soundEffect1 = true;
 
-			// TODO: Plays sound1.
+			// Plays sound1.
 			if(soundEffect1) {
 				sound1.pause();
 				sound1.currentTime = 0;
@@ -130,14 +129,14 @@ class Enemy extends Characters {
 				soundEffect1 = false;
 			}
 
-			// TODO: Deletes all points.
+			// Deletes all points.
 			if(points > 0) {
 				points = 0;
 				counterPoints.innerHTML = '';
-			};
-		};
-	};
-};
+			}
+		}
+	}
+}
 
 
 /**
@@ -156,29 +155,28 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
     return array;
-};
+}
 
 
-// TODO: Position on asix X for an Enemies.
+// Position on asix X for an Enemies.
 let enemyX = Math.floor(Math.random() * 450) + 200;
 
-// TODO: Array with positions on asix Y for an Enemies.
+// Array with positions on asix Y for an Enemies.
 let enemyY = [70, 153, 233, 70, 153, 233, 70, 153, 233];
 
-// TODO: Speed of move for Enemies.
+// Speed of move for Enemies.
 let enemyMove = Math.floor(Math.random() * 100) + 50;
 
 let enemySprite = 'images/enemy-chicken.png';
 
-// TODO: Shuffles elements in array with all enemies.
-allEnemies = shuffle(allEnemies);
-
-// TODO: Creates an enemies and adds to array.
+// Creates an enemies and adds to array.
 enemyY.forEach(function (enemyY) {
 	enemy = new Enemy(enemyX, enemyY, enemySprite);
 	allEnemies.push(enemy);
 });
 
+/* Shuffles elements in array with all enemies. */
+allEnemies = shuffle(allEnemies);
 
 /**
  * Class representing an Trophy.
@@ -196,41 +194,41 @@ class Trophy extends Characters {
 		this.x = x;
 		this.y = y;
 		this.sprite = sprite;
-	};
+	}
 
-	// TODO: Draws the trophys on the screen.
+	// Draws the trophys on the screen.
 	render() {
     	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-	};
-};
+	}
+}
 
-// TODO: Sets the path to graphic file for rocks  trophy.
+// Sets the path to graphic file for rocks  trophy.
 let rockSprite = 'images/Rock.png';
 
-// TODO: Shuffles all elements in array with rocks.
+// Shuffles all elements in array with rocks.
 allRocks = shuffle(allRocks);
 
-// TODO: Sets 3 rocks on canvas.
+// Sets 3 rocks on canvas.
 let rock1 = new Trophy(position[0][1], position[0][0], rockSprite);
 let rock2 = new Trophy(position[1][1], position[1][0], rockSprite);
 let rock3 = new Trophy(position[2][1], position[2][0], rockSprite);
 
-// TODO: Adds all rocks to array.
+// Adds all rocks to array.
 allRocks.push(rock1, rock2, rock3);
 
-// TODO: Sets the path to graphic file for gems trophy.
+// Sets the path to graphic file for gems trophy.
 let gemsSprite = ['images/Gem_Orange.png', 'images/Gem_Blue.png', 'images/Gem_Green.png'];
 
-// TODO: Creates an array for all gems.
+// Creates an array for all gems.
 let allGems = [];
 
-// TODO: Shuffles all elements in array with gems.
+// Shuffles all elements in array with gems.
 allGems = shuffle(allGems);
 
-// TODO: Shuffles all elements in array with sprite of gems.
+// Shuffles all elements in array with sprite of gems.
 gemsSprite = shuffle(gemsSprite);
 
-// TODO: Sets 3 gems on canvas.
+// Sets 3 gems on canvas.
 let gem1 = new Trophy();
 let gem2 = new Trophy();
 let gem3 = new Trophy();
@@ -252,176 +250,176 @@ class Player extends Characters {
 		this.x = x;
 		this.y = y;
 		this.sprite = 'images/egg1.png';
-	};
+	}
 
-	// TODO: Draws the player on the screen.
+	// Draws the player on the screen.
 	render() {
 		 ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-	};
+	}
 
-	// TODO: Updates the Player.
+	// Updates the Player.
 	update() {
-		// TODO: Adds new behaviours when player have collision with rocks.
+		// Adds new behaviours when player have collision with rocks.
 		if(this.x < rock1.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock1.x && this.y < rock1.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock1.y) {
 			rocksCollision();
 
-			// TODO: Adds a gem1 to canvas.
+			// Adds a gem1 to canvas.
 			gem1 = new Trophy(position[3][1], position[3][0], gemsSprite[0]);
 
-			// TODO: Adds a gem1 to array.
+			// Adds a gem1 to array.
 			allGems.push(gem1);
 
-			// TODO: Sets a position on axis X on -900 for rock1.
+			// Sets a position on axis X on -900 for rock1.
 			rock1.x = -900;
-		};
+		}
 
 		if(this.x < rock2.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock2.x && this.y < rock2.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock2.y) {
 			rocksCollision();
 
-			// TODO: Adds a gem2 to canvas.
+			// Adds a gem2 to canvas.
 			gem2 = new Trophy(position[4][1], position[4][0], gemsSprite[1]);
 
-			// TODO: Adds a gem2 to array.
+			// Adds a gem2 to array.
 			allGems.push(gem2);
 
-			// TODO: Sets a position on axis X on -900 for rock2.
+			// Sets a position on axis X on -900 for rock2.
 			rock2.x = -900;
-		};
+		}
 
 		if(this.x < rock3.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock3.x && this.y < rock3.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock3.y) {
 			rocksCollision();
 
-			// TODO: Adds a gem3 to canvas.
+			// Adds a gem3 to canvas.
 			gem3 = new Trophy(position[5][1], position[5][0], gemsSprite[2]);
 
-			// TODO: Adds a gem3 to array.
+			// Adds a gem3 to array.
 			allGems.push(gem3);
 
-			// TODO: Sets a position on axis X on -900 for rock3.
+			// Sets a position on axis X on -900 for rock3.
 			rock3.x = -900;
-		};
+		}
 
-		// TODO: Adds new behaviours when player have collision with gems.
+		// Adds new behaviours when player have collision with gems.
 		if(this.x < gem1.x + GEM_WIDTH && this.x + PLAYER_WIDTH > gem1.x && this.y < gem1.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > gem1.y) {
 
-			// TODO: Sets a position on axis X on -900 for gem1.
+			// Sets a position on axis X on -900 for gem1.
 			gem1.x = -900;
 
-			// TODO: Deletes element on position 0 from array with enemies.
+			// Deletes element on position 0 from array with enemies.
 			delete allEnemies[0];
 
 			gemsCollision();
-		};
+		}
 
 		if(this.x < gem2.x + GEM_WIDTH && this.x + PLAYER_WIDTH > gem2.x && this.y < gem2.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > gem2.y) {
 
-			// TODO: Sets a position on axis X on -900 for gem2.
+			// Sets a position on axis X on -900 for gem2.
 			gem2.x = -900;
 
-			// TODO: Deletes element on position 4 from array with enemies.
+			// Deletes element on position 4 from array with enemies.
 			delete allEnemies[4];
 
 			gemsCollision();
-		};
+		}
 
 		if(this.x < gem3.x + GEM_WIDTH && this.x + PLAYER_WIDTH > gem3.x && this.y < gem3.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > gem3.y) {
 
-			// TODO: Sets a position on axis X on -900 for gem3.
+			// Sets a position on axis X on -900 for gem3.
 			gem3.x = -900;
 
-			// TODO: Deletes element on position 8 from array with enemies.
+			// Deletes element on position 8 from array with enemies.
 			delete allEnemies[8];
 			gemsCollision();
-		};
-	};
+		}
+	}
 
-	// TODO: Handles keyPress event for player.
+	// Handles keyPress event for player.
 	handleInput(keyPress) {
 
-		// TODO: Start game when key Enter is press.
+		// Start game when key Enter is press.
 		if(keyPress == 'enter'){
 			startGame();
-		};
+		}
 
-		// TODO: Move player to left when key Left is press but only if player position on axis X is bigger than 0.
+		// Move player to left when key Left is press but only if player position on axis X is bigger than 0.
 		if(keyPress == 'left' && this.x > 0) {
 			this.x -= FIELD_WIDTH;
 		} else if (keyPress == 'left' && this.x < 0) {
-			this.x == 0;
-		};
+			this.x === 0;
+		}
 
-		// TODO: Move player up when key Up is press but only if player position on axis Y is bigger than 0.
+		// Move player up when key Up is press but only if player position on axis Y is bigger than 0.
 		if(keyPress == 'up' && this.y > 0) {
 			this.y -= FIELD_HEIGHT;
-		};
+		}
 
-		// TODO: Move player to right when key Right is press but only if player position on axis X is smaller than 4*FIELD_WIDTH.
+		// Move player to right when key Right is press but only if player position on axis X is smaller than 4*FIELD_WIDTH.
 		if(keyPress == 'right' && this.x < (4*FIELD_WIDTH)) {
 			this.x += FIELD_WIDTH;
 		} else if (keyPress == 'right' && this.x > (4*FIELD_WIDTH)) {
 			this.x == 4*FIELD_WIDTH;
-		};
+		}
 
-		// TODO: Move player down when key Down is press but only if player position on axis Y is smaller than 5*FIELD_HEIGHT.
+		// Move player down when key Down is press but only if player position on axis Y is smaller than 5*FIELD_HEIGHT.
 		if(keyPress == 'down' && this.y < (5*FIELD_HEIGHT)) {
 			this.y += FIELD_HEIGHT;
 		} else if (keyPress == 'down' && this.y > (5*FIELD_HEIGHT)) {
 			this.x == 5*FIELD_HEIGHT;
-		};
+		}
 
-		// TODO: Relod game when key End is press.
+		// Relod game when key End is press.
 		if(keyPress == 'end') {
 			reload();
-		};
+		}
 
-		// TODO: Move player on initial position when his position on axis Y is smaller than 0.
+		// Move player on initial position when his position on axis Y is smaller than 0.
 		if(this.y < 1) {
 			this.x = 2*FIELD_WIDTH;
 			this.y = 5*FIELD_HEIGHT;
 
-			// TODO: Adds small egg when quantity of points are smaller than 7
+			// Adds small egg when quantity of points are smaller than 7
 			if(points < 7) {
 				points = points + 1;
 				counterPoints.innerHTML += "<img class='star' src='images/eggSmall.png'>";
 
-				// TODO: Adds a sound5.
+				// Adds a sound5.
 				let soundEffect5 = true;
 
-				// TODO: Plays sound5.
+				// Plays sound5.
 				if(soundEffect5) {
 					sound5.pause();
 					sound5.currentTime = 0;
 					sound5.play();
 					soundEffect5 = false;
-				};
-			};
+				}
+			}
 
-			// TODO: Changes the image of Player depending on quantity of points.
-			if(points == 0) {this.sprite = 'images/egg1.png';};
-			if(points == 1) {this.sprite = 'images/egg2.png';};
-			if(points == 2) {this.sprite = 'images/egg3.png';};
-			if(points == 4) {this.sprite = 'images/egg4.png';};
-			if(points == 5) {this.sprite = 'images/egg5.png';};
+			// Changes the image of Player depending on quantity of points.
+			if(points === 0) {this.sprite = 'images/egg1.png';}
+			if(points == 1) {this.sprite = 'images/egg2.png';}
+			if(points == 2) {this.sprite = 'images/egg3.png';}
+			if(points == 4) {this.sprite = 'images/egg4.png';}
+			if(points == 5) {this.sprite = 'images/egg5.png';}
 
-			// TODO: Ends game when quantity of point equal 6.
+			// Ends game when quantity of point equal 6.
 			if(points == 6) {
 				this.sprite = 'images/egg6.png';
 				gameOver();
 
-				// TODO: Adds a sound6.
+				// Adds a sound6.
 				let soundEffect6 = true;
 
-				// TODO: Plays sound6.
+				// Plays sound6.
 				if(soundEffect6) {
 					sound6.pause();
 					sound6.currentTime = 0;
 					sound6.play();
 					soundEffect6 = false;
-				};
-			};
-		};
-	};
-};
+				}
+			}
+		}
+	}
+}
 
 
 /**
@@ -436,7 +434,7 @@ function startGame(){
 	timerGameStart();
 	sound4.loop = true;
 	sound4.play();
-};
+}
 
 
 /**
@@ -444,24 +442,24 @@ function startGame(){
 */
 function rocksCollision(){
 
-	// TODO: Adds heart image to canvas.
+	// Adds heart image to canvas.
 	img = new Image();
 	img.onload = function() {
 		gameTrophies.appendChild(img);
 	};
 	img.src = 'images/smallHeart.png';
 
-	// TODO: Adds a sound2.
+	// Adds a sound2.
 	let soundEffect2 = true;
 
-	// TODO: Plays sound2.
+	// Plays sound2.
 	if(soundEffect2){
 		sound2.pause();
 		sound2.currentTime = 0;
 		sound2.play();
 		soundEffect2 = false;
-	};
-};
+	}
+}
 
 
 /**
@@ -469,31 +467,31 @@ function rocksCollision(){
 */
 function gemsCollision() {
 
-	// TODO: Adds key image to canvas.
+	// Adds key image to canvas.
 	img2 = new Image();
 	img2.onload = function() {
 		 gameTrophies.appendChild(img2);
 	};
 	img2.src = 'images/smallKey.png';
 
-	// TODO: Adds a sound3.
+	// Adds a sound3.
 	let soundEffect3 = true;
 
-	// TODO: Plays sound3.
+	// Plays sound3.
 	if(soundEffect3){
 		sound3.pause();
 		sound3.currentTime = 0;
 		sound3.play();
 		soundEffect3 = false;
-	};
-};
+	}
+}
 
 
-// TODO: Sets player on initial position.
+// Sets player on initial position.
 let player = new Player (2*FIELD_WIDTH, 5*FIELD_HEIGHT);
 
 
-// TODO: Listens for key presses.
+// Listens for key presses.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
 		13: 'enter',
@@ -513,7 +511,7 @@ document.addEventListener('keyup', function(e) {
 */
 function timerGameStart() {
 	setInterval('count()', 1000);
-};
+}
 
 
 /**
@@ -521,7 +519,7 @@ function timerGameStart() {
 */
 function timerGameStop() {
 	timeGoes == false;
-};
+}
 
 
 /**
@@ -543,7 +541,7 @@ function count(){
 		m = 0;
 	}
 	timer.innerHTML = 'Time: ' + m + ' min ' + s + ' sec';
-};
+}
 
 
 /**
@@ -551,7 +549,7 @@ function count(){
 */
 function reload() {
 	window.location.reload();
-};
+}
 
 
 /**
@@ -559,21 +557,21 @@ function reload() {
 */
 function gameOver() {
 
-	// TODO: Display game time.
+	// Display game time.
 	let gameTime = m + ' min ' + s + ' sec';
 
-	// TODO: Displays congratulations on screen for player.
+	// Displays congratulations on screen for player.
 	popupEnd.style.display = 'block';
 	popupEnd.innerHTML = "<span class='yellow'>CONGRATULATION! YOU WON!</span><br><br>Your game time: <span class='yellow'>" + gameTime + "</span> :) <br><br><img src='images/eggs.png' alt='Easter Egge'><br><br><span class='infoEnd'>Press <span class='green'>END</span> key<br/>to refresh game!</span>";
 
-	// TODO: Sets value of variable timeGoes to false and stop the timer.
+	// Sets value of variable timeGoes to false and stop the timer.
 	timeGoes = false;
 
-	// TODO: Sets game time on 0.
+	// Sets game time on 0.
 	timer.style.display = 'none';
 
-	// TODO: Pauses music and set current Time on 0 for audio file.
+	// Pauses music and set current Time on 0 for audio file.
 	sound4.pause();
 	sound4.currentTime = 0;
 
-};
+}
