@@ -49,4 +49,4 @@ That's it! Now you can play Easter EGG :)
 1.0
 
 ## LICENSE
-The MIT License - See [license.md](https://github.com/hajczek/arcade-game/blob/master/license/license.md)
+The MIT License - See [license.md](https://github.com/hajczek/arcade-game/blob/master/license/License.md)
