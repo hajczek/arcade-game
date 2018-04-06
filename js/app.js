@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 const CANVAS_WIDTH = 505;
 const CANVAS_HEIGHT = 480;
 const FIELD_WIDTH = CANVAS_WIDTH/5;
@@ -9,19 +11,19 @@ const ENEMY_HEIGHT = 70;
 const GEM_WIDTH = 60;
 const GEM_HEIGHT = 40;
 
-const canvas = document.querySelector('canvas');
-const h1 = document.querySelector('h1');
-const popup = document.querySelector('.popup_info');
-const popupEnd = document.querySelector('.popup_end');
-const counterPoints = document.querySelector('.game_eggs');
-const gameTrophies = document.querySelector('.game_trophies');
-const timer = document.querySelector('#timer');
-const sound1 = document.querySelector('#sound1');
-const sound2 = document.querySelector('#sound2');
-const sound3 = document.querySelector('#sound3');
-const sound4 = document.querySelector('#sound4');
-const sound5 = document.querySelector('#sound5');
-const sound6 = document.querySelector('#sound6');
+const canvas = document.querySelector("canvas");
+const h1 = document.querySelector("h1");
+const popup = document.querySelector(".popup_info");
+const popupEnd = document.querySelector(".popup_end");
+const counterPoints = document.querySelector(".game_eggs");
+const gameTrophies = document.querySelector(".game_trophies");
+const timer = document.querySelector("#timer");
+const sound1 = document.querySelector("#sound1");
+const sound2 = document.querySelector("#sound2");
+const sound3 = document.querySelector("#sound3");
+const sound4 = document.querySelector("#sound4");
+const sound5 = document.querySelector("#sound5");
+const sound6 = document.querySelector("#sound6");
 
 let points = 0;
 let m = 0;
@@ -46,13 +48,13 @@ let position = [
 	[275, (FIELD_WIDTH*1.2)],
 	[275, (FIELD_WIDTH*2.2)],
 	[275, (FIELD_WIDTH*3.2)],
-	[275, (FIELD_WIDTH*4.2)],
+	[275, (FIELD_WIDTH*4.2)]
 ];
 
 // Shuffles the elements in array position.
 position = shuffle(position);
 
-h1.innerHTML = 'EASTER EGG';
+h1.innerHTML = "EASTER EGG";
 
 popup.innerHTML = "Move egg by keys:<br><span class='yellow'>←</span> left, <span class='yellow'>↑</span> up, <span class='yellow'>→</span> right, <span class='yellow'>↓</span> down.<br><br>Put egg to water and get a small egg! Then your egg will be more colored ...<br><br><span class='yellow'>Be careful about chicken!</span><br>Collision with chicken put your egg at the begining and deletes all small eggs!!<br><br><img src='images/smallRock.png'> gives  <img src='images/smallHeart.png'> and one <img src='images/smallGem_Blue.png'> or <img src='images/smallGem_Green.png'> or <img src='images/smallGem_Orange.png'>.<br>One gem gives one <img src='images/smallKey.png'> and delete one <img src='images/smallChicken.png'>!<br>Gather <img src='images/eggSmall.png'><img src='images/eggSmall.png'><img src='images/eggSmall.png'><img src='images/eggSmall.png'><img src='images/eggSmall.png'><img src='images/eggSmall.png'>and won game!<br><br><span class='yellow'>GOOD LUCK!</span><br><br><br><span class='info'>Press <span class='green'>ENTER</span> to start game!</span>";
 
@@ -96,7 +98,7 @@ class Enemy extends Characters {
 		this.x = -100;
 		this.y = y;
 		this.move = (Math.random() * 120) + 70;
-		this.sprite = 'images/enemy-chicken.png';
+		this.sprite = "images/enemy-chicken.png";
 	}
 
 	// Updates the Enemy. Sets dt parameter for update Enemy - a time delta between ticks.
@@ -116,7 +118,7 @@ class Enemy extends Characters {
 			player.y = 5*FIELD_HEIGHT;
 
 			// Sets player sprite on start image.
-			player.sprite = 'images/egg1.png';
+			player.sprite = "images/egg1.png";
 
 			// Adds a sound1.
 			let soundEffect1 = true;
@@ -132,7 +134,7 @@ class Enemy extends Characters {
 			// Deletes all points.
 			if(points > 0) {
 				points = 0;
-				counterPoints.innerHTML = '';
+				counterPoints.innerHTML = "";
 			}
 		}
 	}
@@ -168,7 +170,7 @@ let enemyY = [70, 153, 233, 70, 153, 233, 70, 153, 233];
 // Speed of move for Enemies.
 let enemyMove = Math.floor(Math.random() * 100) + 50;
 
-let enemySprite = 'images/enemy-chicken.png';
+let enemySprite = "images/enemy-chicken.png";
 
 // Creates an enemies and adds to array.
 enemyY.forEach(function (enemyY) {
@@ -205,7 +207,7 @@ class Trophy extends Characters {
 }
 
 // Sets the path to graphic file for rocks  trophy.
-let rockSprite = 'images/Rock.png';
+let rockSprite = "images/Rock.png";
 
 // Sets 3 rocks on canvas.
 let rock1 = new Trophy(position[0][1], position[0][0], rockSprite);
@@ -219,7 +221,7 @@ allRocks.push(rock1, rock2, rock3);
 allRocks = shuffle(allRocks);
 
 // Sets the path to graphic file for gems trophy.
-let gemsSprite = ['images/Gem_Orange.png', 'images/Gem_Blue.png', 'images/Gem_Green.png'];
+let gemsSprite = ["images/Gem_Orange.png", "images/Gem_Blue.png", "images/Gem_Green.png"];
 
 // Creates an array for all gems.
 let allGems = [];
@@ -251,7 +253,7 @@ class Player extends Characters {
 		super(x, y, sprite);
 		this.x = x;
 		this.y = y;
-		this.sprite = 'images/egg1.png';
+		this.sprite = "images/egg1.png";
 	}
 
 	// Draws the player on the screen.
@@ -410,15 +412,15 @@ class Player extends Characters {
 			}
 
 			// Changes the image of Player depending on quantity of points.
-			if(points === 0) {this.sprite = 'images/egg1.png';}
-			if(points == 1) {this.sprite = 'images/egg2.png';}
-			if(points == 2) {this.sprite = 'images/egg3.png';}
-			if(points == 4) {this.sprite = 'images/egg4.png';}
-			if(points == 5) {this.sprite = 'images/egg5.png';}
+			if(points === 0) {this.sprite = "images/egg1.png";}
+			if(points == 1) {this.sprite = "images/egg2.png";}
+			if(points == 2) {this.sprite = "images/egg3.png";}
+			if(points == 4) {this.sprite = "images/egg4.png";}
+			if(points == 5) {this.sprite = "images/egg5.png";}
 
 			// Ends game when quantity of point equal 6.
 			if(points == 6) {
-				this.sprite = 'images/egg6.png';
+				this.sprite = "images/egg6.png";
 				gameOver();
 
 				// Adds a sound6.
@@ -441,10 +443,10 @@ class Player extends Characters {
 * @description Starts game
 */
 function startGame(){
-	popup.style.display = 'none';
-	popupEnd.style.display = 'none';
-	counterPoints.innerHTML = '';
-	gameTrophies.innerHTML = '';
+	popup.style.display = "none";
+	popupEnd.style.display = "none";
+	counterPoints.innerHTML = "";
+	gameTrophies.innerHTML = "";
 	points = 0;
 	timerGameStart();
 	sound4.loop = true;
@@ -462,7 +464,7 @@ function rocksCollision(){
 	img.onload = function() {
 		gameTrophies.appendChild(img);
 	};
-	img.src = 'images/smallHeart.png';
+	img.src = "images/smallHeart.png";
 
 	// Adds a sound2.
 	let soundEffect2 = true;
@@ -487,7 +489,7 @@ function gemsCollision() {
 	img2.onload = function() {
 		 gameTrophies.appendChild(img2);
 	};
-	img2.src = 'images/smallKey.png';
+	img2.src = "images/smallKey.png";
 
 	// Adds a sound3.
 	let soundEffect3 = true;
