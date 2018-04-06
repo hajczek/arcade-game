@@ -139,6 +139,7 @@ class Enemy extends Characters {
 }
 
 
+
 /**
 * @description Shuffle an elements in array.
 * @param {array} array - The array which elements will be shuffled.
@@ -173,10 +174,11 @@ let enemySprite = 'images/enemy-chicken.png';
 enemyY.forEach(function (enemyY) {
 	enemy = new Enemy(enemyX, enemyY, enemySprite);
 	allEnemies.push(enemy);
+
+	// Shuffles elements in array with all enemies.
+	allEnemies = shuffle(allEnemies);
 });
 
-/* Shuffles elements in array with all enemies. */
-allEnemies = shuffle(allEnemies);
 
 /**
  * Class representing an Trophy.
@@ -205,9 +207,6 @@ class Trophy extends Characters {
 // Sets the path to graphic file for rocks  trophy.
 let rockSprite = 'images/Rock.png';
 
-// Shuffles all elements in array with rocks.
-allRocks = shuffle(allRocks);
-
 // Sets 3 rocks on canvas.
 let rock1 = new Trophy(position[0][1], position[0][0], rockSprite);
 let rock2 = new Trophy(position[1][1], position[1][0], rockSprite);
@@ -215,6 +214,9 @@ let rock3 = new Trophy(position[2][1], position[2][0], rockSprite);
 
 // Adds all rocks to array.
 allRocks.push(rock1, rock2, rock3);
+
+// Shuffles all elements in array with rocks.
+allRocks = shuffle(allRocks);
 
 // Sets the path to graphic file for gems trophy.
 let gemsSprite = ['images/Gem_Orange.png', 'images/Gem_Blue.png', 'images/Gem_Green.png'];
@@ -260,7 +262,7 @@ class Player extends Characters {
 	// Updates the Player.
 	update() {
 		// Adds new behaviours when player have collision with rocks.
-		if(this.x < rock1.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock1.x && this.y < rock1.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock1.y) {
+		/* if(this.x < rock1.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock1.x && this.y < rock1.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock1.y) {
 			rocksCollision();
 
 			// Adds a gem1 to canvas.
@@ -271,7 +273,7 @@ class Player extends Characters {
 
 			// Sets a position on axis X on -900 for rock1.
 			rock1.x = -900;
-		}
+		} */
 
 		if(this.x < rock2.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock2.x && this.y < rock2.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock2.y) {
 			rocksCollision();
@@ -335,6 +337,19 @@ class Player extends Characters {
 
 	// Handles keyPress event for player.
 	handleInput(keyPress) {
+
+		if((keyPress == 'left' || keyPress == 'right' || keyPress == 'down' || keyPress == 'up') && (this.x < rock1.x + GEM_WIDTH && this.x + PLAYER_WIDTH > rock1.x && this.y < rock1.y + GEM_HEIGHT && this.y + PLAYER_HEIGHT > rock1.y)){
+			rocksCollision();
+
+			// Adds a gem1 to canvas.
+			gem1 = new Trophy(position[3][1], position[3][0], gemsSprite[0]);
+
+			// Adds a gem1 to array.
+			allGems.push(gem1);
+
+			// Sets a position on axis X on -900 for rock1.
+			rock1.x = -900;
+		}
 
 		// Start game when key Enter is press.
 		if(keyPress == 'enter'){
