@@ -1,4 +1,4 @@
-# Classic Arcade Game Clone Project
+# Classic Arcade Game Project
 
 ## Title: 'EASTER EGG'
 
